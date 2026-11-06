@@ -20,12 +20,8 @@
     nav.classList.remove('is-open');
   }));
 
-  // tariff buttons preselect the form option
-  const sel = document.getElementById('f-tariff');
-  document.querySelectorAll('[data-tariff]').forEach(b => b.addEventListener('click', () => {
-    if (!sel) return;
-    [...sel.options].forEach(o => { if (o.text === b.dataset.tariff) sel.value = o.value || o.text; });
-  }));
+  const goal = n => [69366070, 82816897].forEach(id => { try { if (typeof ym === "function") ym(id, "reachGoal", n); } catch (e) {} });
+  document.querySelectorAll("[data-goal]").forEach(a => a.addEventListener("click", () => goal(a.dataset.goal)));
 
   const form = document.getElementById('leadForm');
   form?.addEventListener('submit', async e => {
@@ -48,7 +44,8 @@
         body: JSON.stringify(payload),
       });
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      btn.textContent = 'Заявка отправлена ✓';
+      btn.textContent = 'Вопрос отправлен ✓';
+      goal('hermes_form_submit');
       form.reset();
     } catch (err) {
       console.error(err);
